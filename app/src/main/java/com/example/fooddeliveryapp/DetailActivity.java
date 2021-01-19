@@ -3,6 +3,8 @@ package com.example.fooddeliveryapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.fooddeliveryapp.databinding.ActivityDetailBinding;
 import com.example.fooddeliveryapp.databinding.ActivityMainBinding;
@@ -17,14 +19,34 @@ public class DetailActivity extends AppCompatActivity {
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        int image = getIntent().getIntExtra("image",0);
-        int price = Integer.parseInt(getIntent().getStringExtra("price"));
-        String name = getIntent().getStringExtra("name");
-        String description = getIntent().getStringExtra("desc");
+        final int image = getIntent().getIntExtra("image", 0);
+        final int price = Integer.parseInt(getIntent().getStringExtra("price"));
+        final String name = getIntent().getStringExtra("name");
+        final String description = getIntent().getStringExtra("desc");
 
         binding.detailImage.setImageResource(image);
-        binding.priceLbl.setText(String.format("%d",price));
+        binding.priceLbl.setText(String.format("%d", price));
         binding.mainName.setText(name);
         binding.detailDescription.setText(description);
+
+        final DBHelper dbHelper = new DBHelper(this);
+        binding.inserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               boolean isInserted = dbHelper.insertOrder(
+                        binding.nameBox.getText().toString(),
+                        binding.phoneBox.getText().toString(),
+                        price,
+                        image,
+                        name,
+                        description,
+                        Integer.parseInt(binding.quantity.getText().toString())
+                );
+               if (isInserted)
+                   Toast.makeText(DetailActivity.this, "Order Placed Successfully", Toast.LENGTH_SHORT).show();
+            else
+                   Toast.makeText(DetailActivity.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
