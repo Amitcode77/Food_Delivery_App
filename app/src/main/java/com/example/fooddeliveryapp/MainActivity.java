@@ -1,12 +1,16 @@
 package com.example.fooddeliveryapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView.LayoutManager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.fooddeliveryapp.Adapters.MainAdapter;
 import com.example.fooddeliveryapp.Models.MainModel;
@@ -32,7 +36,21 @@ public class MainActivity extends AppCompatActivity {
         binding.recylcerview.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recylcerview.setLayoutManager(layoutManager);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.orders:
+                startActivity(new Intent(MainActivity.this,OrderActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
