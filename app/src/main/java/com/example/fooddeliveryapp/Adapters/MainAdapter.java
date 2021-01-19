@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fooddeliveryapp.DetailActivity;
 import com.example.fooddeliveryapp.Models.MainModel;
 import com.example.fooddeliveryapp.R;
 
@@ -38,6 +40,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewholder>{
         holder.mainName.setText(model.getName());
         holder.price.setText(model.getPrice());
         holder.description.setText(model.getDescription());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("image",model.getImage());
+            intent.putExtra("price",model.getPrice());
+            intent.putExtra("desc",model.getDescription());
+            intent.putExtra("name",model.getName());
+            context.startActivity(intent);
+            }
+        });
     }
 
     @Override

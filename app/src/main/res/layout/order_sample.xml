@@ -91,7 +91,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/price"
+                        android:id="@+id/priceLbl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="90"
