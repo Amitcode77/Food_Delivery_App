@@ -23,16 +23,8 @@ public class OrderActivity extends AppCompatActivity {
         binding = ActivityOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<OrdersModel> list = new ArrayList<>();
-        list.add(new OrdersModel(R.drawable.pizza,"Pizza","160","151"));
-        list.add(new OrdersModel(R.drawable.burger,"Burger","99","152"));
-        list.add(new OrdersModel(R.drawable.pizza,"Pizza","160","153"));
-        list.add(new OrdersModel(R.drawable.burger,"Burger","99","154"));
-        list.add(new OrdersModel(R.drawable.pizza,"Pizza","160","155"));
-        list.add(new OrdersModel(R.drawable.burger,"Burger","99","156"));
-        list.add(new OrdersModel(R.drawable.pizza,"Pizza","160","157"));
-        list.add(new OrdersModel(R.drawable.burger,"Burger","99","158"));
-        list.add(new OrdersModel(R.drawable.pizza,"Pizza","160","159"));
+      DBHelper helper = new DBHelper(this);
+      ArrayList<OrdersModel> list = helper.getOrders();
 
         OrdersAdapter adapter = new OrdersAdapter(list,this);
         binding.orderRecyclerVIew.setAdapter(adapter);
