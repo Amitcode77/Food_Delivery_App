@@ -17,6 +17,8 @@ import com.example.fooddeliveryapp.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewholder>{
     ArrayList<MainModel> list;
     Context context;
@@ -59,7 +61,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewholder>{
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        ImageView foodImage;
+        CircleImageView foodImage;
         TextView mainName,price,description;
         public viewholder(@NonNull View itemView) {
             super(itemView);

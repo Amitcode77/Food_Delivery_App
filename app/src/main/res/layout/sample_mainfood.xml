@@ -19,13 +19,12 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/burger" />
+                android:src="@drawable/pizza" />
 
             <LinearLayout
                 android:layout_width="match_parent"
